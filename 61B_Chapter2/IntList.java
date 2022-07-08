@@ -4,6 +4,7 @@ public class IntList {
     public int first;
     public IntList rest;
 
+    // constructor - initiate an object of a class, you call the constructor of that class
     public IntList (int f, IntList r) {
         first = f;
         rest = r;
@@ -36,11 +37,20 @@ public class IntList {
         return totalSize;
     }
 
+   
     public static void main(String[] args) {
         IntList L = new IntList (15, null);
         L = new IntList (342, L);
         L = new IntList (534, L);
     
-    System.out.println(L.iterative_size());
+    System.out.println(L.get(0));
+    }
+
+    // will return the value of index i in intList
+    public int get (int i) {
+        if (i == 0){
+            return first;
+        }
+        return rest.get(i-1); 
     }
 }
