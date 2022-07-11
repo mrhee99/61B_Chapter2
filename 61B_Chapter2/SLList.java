@@ -17,31 +17,42 @@ public class SLList {
 
         
     }
-    private IntNode first;
+    /* The first item (if it exists) is at sentinel.next */
+    private IntNode sentinel;
     private int size;
     
+    public SLList () {
+        // sentinel has to have some value in it
+        sentinel = new IntNode(5, null);;
+        size = 0;
+    }
 
     public SLList(int x) {
-        first = new IntNode(x, null);
+         
+        sentinel = new IntNode(5, null);
+        // the first item 
+        sentinel.next = new IntNode(x, null);
         size =1;
     }
 
     // adding x to the front of the list
     public void addFirst (int x){
-        // becasue x comes to the front, previous "first" list becomes the following ones after x. Therefore the parameter takes first as the second one. 
-        first = new IntNode (x, first);
+        // the new value will become sentinel.next and the previous sentinel.next will go behind it
+        sentinel.next = new IntNode (x, sentinel.next);
         size = size +1;
     }
     // retrieving the first item of the list
     public int getFirst () {
-        // the first item of the "first" IntNode
-        return first.item;
+        // sentinel.next is the first value in the list
+        return sentinel.next.item;
     }
     
     // adding x to the very back of the list 
     public void addLast (int x) {
-        IntNode p = first;
         size = size +1;
+
+        IntNode p = sentinel;
+      
 
         // moving p to the very last of the list
         while (p.next != null) {
@@ -66,11 +77,9 @@ public class SLList {
     
     public static void main(String[] args) {
         /* creates a list of one integer, 10 */
-        SLList L = new SLList (10);
-        L.addFirst (12);
-        L.addFirst (24);
+        SLList L = new SLList ();
         L.addLast (45);
-        System.out.println(L.getFirst());
+        System.out.println(L.size());
     
     }
    
